@@ -6,9 +6,6 @@ Summarize long articles using NLP (T5 transformer model)
 ## ✅ Features:
 - GUI-based interface with default example
 - One-click summarization
-- Stylish green background
-- Hand cursor on hover
-- Button in cyan color
 
 ## ▶ How to Run:
 
@@ -18,4 +15,4 @@ Summarize long articles using NLP (T5 transformer model)
 2. Run script:
    python gui_text_summarizer.py
 
-3. Copy or paste any article. Click "Summarize" to see result.
+3. Copy or paste any article. Click "Summarize" to see result
