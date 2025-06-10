@@ -2,10 +2,6 @@ import streamlit as st
 from transformers import T5Tokenizer, T5ForConditionalGeneration
 import time
 
-st.set_page_config(page_title="Task 1 – Summarizer 💻", layout="wide")
-
-st.markdown("<h1 style='text-align:center; color:#00ffff;'>CODTECH INTERNSHIP – TASK 1</h1>🧠", unsafe_allow_html=True)
-
 @st.cache_resource
 def load_model():
     tokenizer = T5Tokenizer.from_pretrained("t5-base")
@@ -13,6 +9,9 @@ def load_model():
     return tokenizer, model
 
 tokenizer, model = load_model()
+
+st.set_page_config(page_title="Task 1 – Summarizer 💻", layout="wide")
+st.markdown("<h1 style='text-align:center; color:#00ffff;'>CODTECH INTERNSHIP – TASK 1 🧠</h1>", unsafe_allow_html=True)
 
 col1, col2 = st.columns(2)
 
@@ -32,17 +31,16 @@ with col1:
 
     if uploaded_files:
         for file in uploaded_files:
-            file_content = file.read().decode("utf-8")
-            input_text += "\n" + file_content
-        uploaded_names = ", ".join([file.name for file in uploaded_files])
-        st.info(f"Uploaded Files: {uploaded_names} 📂")
+            input_text += "\n" + file.read().decode("utf-8")
+        names = ", ".join([file.name for file in uploaded_files])
+        st.info(f"📂 Uploaded Files: {names}")
 
 with col2:
     st.markdown("### Summary Output: 📌")
     summary_placeholder = st.empty()
 
-    if st.button("Summarize ✨"):
-        with st.spinner("Generating your sexy summary..."):
+    if st.button("✨ Summarize ✨"):
+        with st.spinner("Generating summary..."):
             input_ids = tokenizer.encode("summarize: " + input_text, return_tensors="pt", max_length=1024, truncation=True)
             summary_ids = model.generate(
                 input_ids,
@@ -59,7 +57,7 @@ with col2:
             for ch in summary:
                 animated += ch
                 summary_placeholder.markdown(
-                    f"<p style='color:#00ff88;font-size:18px;'>{animated}</p>",
+                    f"<p style='color:#00ff88;font-size:18px;'>{animated}</p>", 
                     unsafe_allow_html=True
                 )
                 time.sleep(0.01)
