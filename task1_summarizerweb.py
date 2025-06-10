@@ -2,6 +2,8 @@ import streamlit as st
 from transformers import T5Tokenizer, T5ForConditionalGeneration
 import time
 
+st.set_page_config(page_title="Task 1 – Summarizer 💻", layout="wide")
+
 @st.cache_resource
 def load_model():
     tokenizer = T5Tokenizer.from_pretrained("t5-base")
@@ -10,7 +12,6 @@ def load_model():
 
 tokenizer, model = load_model()
 
-st.set_page_config(page_title="Task 1 – Summarizer 💻", layout="wide")
 st.markdown("<h1 style='text-align:center; color:#00ffff;'>CODTECH INTERNSHIP – TASK 1 🧠</h1>", unsafe_allow_html=True)
 
 col1, col2 = st.columns(2)
